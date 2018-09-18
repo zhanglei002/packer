@@ -25,7 +25,7 @@ func (s *StepCreateVolume) Run(_ context.Context, state multistep.StateBag) mult
 		return multistep.ActionContinue
 	}
 
-	config := state.Get("config").(Config)
+	config := state.Get("config").(*Config)
 	ui := state.Get("ui").(packer.Ui)
 
 	// We will need Block Storage and Image services clients.
@@ -92,7 +92,7 @@ func (s *StepCreateVolume) Cleanup(state multistep.StateBag) {
 		return
 	}
 
-	config := state.Get("config").(Config)
+	config := state.Get("config").(*Config)
 	ui := state.Get("ui").(packer.Ui)
 
 	blockStorageClient, err := config.blockStorageV3Client()

@@ -17,7 +17,7 @@ type stepCreateServer struct {
 func (s *stepCreateServer) Run(_ context.Context, state multistep.StateBag) multistep.StepAction {
 	client := state.Get("client").(*api.ScalewayAPI)
 	ui := state.Get("ui").(packer.Ui)
-	c := state.Get("config").(Config)
+	c := state.Get("config").(*Config)
 	sshPubKey := state.Get("ssh_pubkey").(string)
 	tags := []string{}
 	var bootscript *string

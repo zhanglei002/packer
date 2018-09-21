@@ -51,8 +51,13 @@ func realMain() int {
 			fmt.Fprintf(os.Stderr, "Couldn't setup log output: %s", err)
 			return 1
 		}
+
+		ioutil.WriteFile("log_debug.txt", []byte(fmt.Sprintf("log writer is %#v", logWriter)), 0644)
+		log.Printf("MEG AND PADDY: logwriter is %#v", logWriter)
 		if logWriter == nil {
+			ioutil.WriteFile("log_debug2.txt", []byte(fmt.Sprintf("log writer 2 is %#v", logWriter)), 0644)
 			logWriter = ioutil.Discard
+			ioutil.WriteFile("log_debug3.txt", []byte(fmt.Sprintf("log writer 3 is %#v", logWriter)), 0644)
 		}
 
 		packer.LogSecretFilter.SetOutput(logWriter)
